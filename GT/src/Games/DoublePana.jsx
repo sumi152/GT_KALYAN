@@ -405,7 +405,7 @@ function DoublePana() {
               autoComplete="off"
             />
             <datalist id="digitList">
-              {doublePanaArrayArray.map((digit, index) => (
+              {doublePanaArray.map((digit, index) => (
                 <option key={index} value={digit} />
               ))}
             </datalist>

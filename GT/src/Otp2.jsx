@@ -28,6 +28,8 @@ function Otp2() {
   const [data2, setdata2] = useState(null);
   const { phoneNumber ,otp2,option} = state;
   const mobile = useSelector(state=>state.userDetail.mobile)
+  const unique = useSelector(state=>state.userDetail.token)
+
 
   console.log("Phone Number:", phoneNumber);
   console.log("otp", otp2);
@@ -97,12 +99,12 @@ function Otp2() {
     setCounter(30);
 
     try {
-      await fetchResendOtp(phoneNumber);
+      await fetchResendOtp(mobile);
     } catch (error) {
       console.error("Error registering:", error);
     }
   };
-  const fetchResendOtp = async (phoneno) => {
+  const fetchResendOtp = async (mobile) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -110,7 +112,7 @@ function Otp2() {
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-        mobile: phoneno,
+        mobile: mobile,
       });
   
       const requestOptions = {
@@ -156,7 +158,7 @@ function Otp2() {
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-        unique_token: "un5ChwLA8EJqiLqCBolQwC0gY31AAL",
+        unique_token: unique,
         mobile_no: mobile,
         upi_type: option,
         paytm_no: ispaytm,

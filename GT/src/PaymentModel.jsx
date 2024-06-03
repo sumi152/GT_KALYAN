@@ -14,6 +14,7 @@ const PaymentModal = ({ closeModal, option }) => {
       document.body.style.overflowY = "scroll";
     };
   }, []);
+  const mobile = useSelector(state=>state.userDetail.mobile)
 
   let buttonText, imgSrc,color,ispaytm,isphonepe,isgooglepe;
   switch (option) {
@@ -70,7 +71,7 @@ const PaymentModal = ({ closeModal, option }) => {
     }
     try {
       const otpData =await fetchData(
-        phoneno.current.value,
+        mobile,
       );
       console.log(otpData)
       if (otpData?.status) {
@@ -88,7 +89,7 @@ const PaymentModal = ({ closeModal, option }) => {
     
   };
 
-  const fetchData = async (phoneno) => {
+  const fetchData = async (mobile) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -96,7 +97,7 @@ const PaymentModal = ({ closeModal, option }) => {
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-        mobile: phoneno,
+        mobile: mobile,
       });
   
       const requestOptions = {
@@ -141,8 +142,9 @@ const PaymentModal = ({ closeModal, option }) => {
             className=" bg-gray-500 ml-4 border-none  px-10 rounded"
             name="phoneno"
           />
-          <p className="text-red-500">{Errors.phoneno}</p>
+          
         </div>
+        <p className="text-red-500">{Errors.phoneno}</p>
         <div className="flex  mt-2">
           <button
             onClick={closeModal}

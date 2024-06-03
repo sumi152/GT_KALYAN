@@ -7,7 +7,9 @@ import frame from "../Images/frame_addfund.png";
 import paytm from "../Images/paytm.png";
 import { useNavigate } from "react-router-dom";
 import PaymentModal from "../PaymentModel.jsx";
-import { useState } from "react";
+import { useState , useEffect } from "react";
+import useWallet from "../Hooks/useWallet.jsx";
+import { useSelector } from "react-redux";
 
 function Wallet() {
   const navbarStyle = {
@@ -110,6 +112,15 @@ function Wallet() {
     setShowModal(false);
     setSelectedOption(null);
   };
+  const unique = useSelector((state) => state.userDetail.token);
+
+  const res = useWallet(unique);
+  useEffect(() => {
+    if (res && res.wallet_amt) {
+      // setWalletAmt(res.wallet_amt);
+    }
+  }, [res.wallet_amt]);
+
 
 
 
@@ -129,7 +140,7 @@ function Wallet() {
       <div className=" p-5" style={topStyle}>
         <div className="p-5 sm:w-auto md:max-w-lg lg:max-w-lg" style={box1}>
           <p>Current Balance</p>
-          <p>RS 0</p>
+          <p>RS {res.wallet_amt}</p>
         </div>
 
         <div style={Container}>

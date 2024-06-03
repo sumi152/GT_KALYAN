@@ -114,7 +114,7 @@ function Top() {
           </div>
         </div>
         <div style={centerStyle}>
-          <button onClick={() => navigate('/imp2')} className='flex justify-center'
+          <button onClick={() => navigate('/galiIMP')} className='flex justify-center'
           >
             <img src={black} alt="Add Fund" style={cellImageStyle} />
           </button>
