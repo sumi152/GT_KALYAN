@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import cal from "./Images/calendar_icon.png";
+import { FaRegCalendar } from "react-icons/fa";
 
 const DatePickerButton = ({ selectedDate, onDateChange }) => {
   const [startDate, setStartDate] = useState(selectedDate || new Date());
@@ -26,14 +27,16 @@ const DatePickerButton = ({ selectedDate, onDateChange }) => {
   };
 
   return (
-    <div className='flex justify-start items-center w-full border border-black-500 bg-blue-500 rounded' onClick={openDatePicker}>
-      <img className="m-1" src={cal} alt="" />
-      <DatePicker
+    <div className='flex justify-between items-center px-2 w-full border border-black-500 bg-blue-950 rounded' onClick={openDatePicker}>
+      {/* <img className="m-1" src={cal} alt="" /> */}
+      
+      <DatePicker 
         selected={startDate}
         onChange={(date) => handleDateChange(date)}
-        className="bg-blue-500"
+        className="bg-blue-950 py-4 "
         ref={datePickerRef}
       />
+      <FaRegCalendar />
     </div>
   );
 };

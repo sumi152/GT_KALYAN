@@ -109,7 +109,7 @@ const StarModal = ({
     console.log("submit result out");
     if (result?.status === true) {
       console.log("submit result");
-      notify();
+      // notify();
     } else {
       throw new Error("Invalid username and password");
     }
