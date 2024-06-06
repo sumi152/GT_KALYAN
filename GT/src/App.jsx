@@ -68,6 +68,8 @@ import GALIGAME from './GALIGAME.jsx'
 import GALIIMP from './GALIIMP.jsx'
 import IMPWIN from './Gali_WIN/IMPWIN.jsx'
 import IMPBID from './Gali_BID/IMPBID.jsx'
+import GaliAllGame from './GaliAllGame.jsx'
+// import RightDigit from './Gali_games/RightDigit.jsx'
 
 
 
@@ -145,6 +147,10 @@ function App() {
         <Route path='/galiIMP' element={<><GALIIMP/></>}></Route>
         <Route path='/impwin' element={<><IMPWIN/></>}></Route>
         <Route path='/impbid' element={<><IMPBID/></>}></Route>
+        <Route path='/galiallgame' element={<><GaliAllGame/></>}></Route>
+        {/* <Route path="/right"  element={<RightDigit/>}> </Route>   */}
+        
+
 
         <Route path="/single"  element={<Single/>}> </Route>  
         <Route path='/fullsangam' element={<><FullSangam/></>}></Route>

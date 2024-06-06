@@ -5,6 +5,7 @@ import starMarker from "./Images/strline_market.png";
 import useStarGameRate from "./Hooks/useStarGameRate";
 import useStarline from "./Hooks/useStarline";
 import { useState, useEffect } from "react";
+import useGaliGameRates from "./Hooks/useGaliGameRates";
 function GALIRATES() {
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
@@ -55,7 +56,7 @@ function GALIRATES() {
   const [gameRates, setGameRates] = useState([]);
   const [status1, setStatus1] = useState(false);
   const [gameRates1, setGameRates1] = useState([]);
-  const resinfo = useStarGameRate();
+  const resinfo = useGaliGameRates();
   const resinfo1 = useStarline();
   useEffect(() => {
     if (resinfo1 && resinfo1["result"]) {

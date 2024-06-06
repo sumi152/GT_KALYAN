@@ -3,6 +3,7 @@ import DatePickerButton from "../Date";
 import topBackground from "../Images/bg.png";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function Bid({onDataFetch}) {
   const navbarStyle = {
@@ -27,6 +28,7 @@ function Bid({onDataFetch}) {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+  const token = useSelector(state=>state.userDetail.token)
 
   useEffect(() => {
     fetchData(changedate(selectedDate), changedate(selectedEndDate));
@@ -58,38 +60,57 @@ function Bid({onDataFetch}) {
 
   };
 
-  const fetchData = async ( startdate1, enddate1) => {
-    // Your fetchData implementation here
+  const fetchData = async (startdate1, enddate1) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
       "Cookie",
       "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
     );
-
+  
     var raw = JSON.stringify({
       env_type: "Prod",
       app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-      unique_token: "un5ChwLA8EJqiLqCBolQwC0gY31AAL",
-      date_from: startdate1,
-      date_to: enddate1
+      unique_token: token,
+      bid_from: startdate1,
+      bid_to: enddate1
     });
+  
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
-
-    const response = await fetch(
-      "https://kalyanmilanofficialmatka.in/api-wining-history-data",
-      requestOptions
-    );
-    const result = await response.json();
-    if(result?.status==true)onDataFetch(true , result);
-    else onDataFetch(false,null);
-    // console.log(result);
+  
+    try {
+      const response = await fetch(
+        "https://kalyanmilanofficialmatka.in/api-galidisawar-bid-history-data",
+        requestOptions
+      );
+  
+      if (!response.ok) {
+        // Handle HTTP errors
+        const errorText = await response.text();
+        console.error('HTTP Error:', response.status, errorText);
+        onDataFetch(false, null);
+        return;
+      }
+  
+      const result = await response.json();
+      if (result?.status === true) {
+        onDataFetch(true, result);
+      } else {
+        onDataFetch(false, null);
+      }
+      console.log(result);
+    } catch (error) {
+      // Handle network or other errors
+      console.error('Fetch Error:', error);
+      onDataFetch(false, null);
+    }
   };
+  
 
   const changedate =( selectedDate)=>{
     if(selectedDate===null)return;

@@ -3,6 +3,7 @@ import DatePickerButton from "../Date";
 import topBackground from "../Images/bg.png";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function Win({onDataFetch}) {
   const navbarStyle = {
@@ -27,6 +28,7 @@ function Win({onDataFetch}) {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+  const token = useSelector(state=>state.userDetail.token)
 
   useEffect(() => {
     fetchData(changedate(selectedDate), changedate(selectedEndDate));
@@ -70,7 +72,7 @@ function Win({onDataFetch}) {
     var raw = JSON.stringify({
       env_type: "Prod",
       app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-      unique_token: "un5ChwLA8EJqiLqCBolQwC0gY31AAL",
+      unique_token: token,
       date_from: startdate1,
       date_to: enddate1
     });
@@ -82,7 +84,7 @@ function Win({onDataFetch}) {
     };
 
     const response = await fetch(
-      "https://kalyanmilanofficialmatka.in/api-wining-history-data",
+      "https://kalyanmilanofficialmatka.in/api-galidisawar-wining-history-data",
       requestOptions
     );
     const result = await response.json();
