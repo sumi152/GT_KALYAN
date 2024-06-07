@@ -3,6 +3,7 @@ import DatePickerButton from "../Date";
 import topBackground from "../Images/bg.png";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function Starbid({onDataFetch}) {
   const navbarStyle = {
@@ -27,6 +28,7 @@ function Starbid({onDataFetch}) {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+  const token = useSelector(state=>state.userDetail.token)
 
   useEffect(() => {
     fetchData(changedate(selectedDate), changedate(selectedEndDate));
@@ -70,7 +72,7 @@ function Starbid({onDataFetch}) {
     var raw = JSON.stringify({
       env_type: "Prod",
       app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-      unique_token: "un5ChwLA8EJqiLqCBolQwC0gY31AAL",
+      unique_token: token,
       bid_from: startdate1,
       bid_to: enddate1
     });
