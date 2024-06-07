@@ -10,7 +10,7 @@ function GALIRATES() {
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover", // This will make the background image cover the container without
-    paddingBottom: "50px",
+    paddingBottom: "50px"
   };
   const navbarStyle = {
     height: "60px",
